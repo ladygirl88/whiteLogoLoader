@@ -11,19 +11,83 @@
         <link rel="stylesheet" type="text/css" href="/docs/docs.css">
         <!-- style.css is the result of style.scss -->
         <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+        <!--contain JQuery library --> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
     </head>
     <body>
+                     
+        <!--I used this design because, after going through the Company Website I saw that the visual consistency is very simple and clean. 
+            So I did not add many animations or overwhelming colors.
+            Further, my knowledge with svg's was very little so at first it was a little complicated and needed to do some research about using svg animation (or inline svg), 
+            but after trying and experimenting different ways of implementing this, it was easier and fun!
+            Something I would like to try more in the future when using svg's is deviding more the styling into the sass so it does not become to messy when implementing 
+            bigger designs/svg.
+        -->
         <header class="whi__docs__header">
             <div class="whi__docs__header__content">
                 <h1>Welcome to</h1>
                 <h2>svg loader challenge</h2>
-                <img src="/docs/logo.png"/>
                 <!-- TIP: use inline svg here -->
+                <!--<img src="docs/logo.svg" id="logo_svg" style="">-->
+                <!--</img>-->
+                <!-- <object>
+                        <embed src="docs/logo.svg" class="logo-animation">
+                    </object>-->
+            
+            <!--inline svg used to add and animate the logo together with loader --> 
+            <svg class="svg_wrap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="250" height="150"> 
+            <!--the defs element is used to define svg elements and can be reused inside each svg in this case to use gradient to all svg shapes  --> 
+                    <defs>
+                       <linearGradient id="MyGradient">
+                            <stop offset="0%" stop-color="FFFFFF" stop-opacity=".5">
+                                <animate attributeName="stop-color" values="#0694B5;#1A2980;#208c4d;#0694B5;#1A2980;#208c4d;#0694B5;#1A2980;#208c4d;#0694B5;"  dur="14s" repeatCount="indefinite"/>
+                            </stop>
+                            <stop offset="100%" stop-color="FFFFFF" stop-opacity=".5">
+                                <animate attributeName="stop-color" values="#FFFFFF;#FFFFFF;#FFFFFF;#FFFFFF;#FFFFFF;" dur="14s" repeatCount="indefinite" />
+                                <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="14s" repeatCount="indefinite" />
+                            </stop>
+                        </linearGradient>
+                    </defs>
+                  
+            <!-- nested svg's is used to group the svg shapes together, and position them as a collection -->
+            <!--svg logo with gradient_design class will be added when clicking button start-->
+                <svg id="white__logo" width="200px" viewBox="0 0 200 27" xml:space="preserve">
+                
+                    <!--A width border animation will be added to logo_svg_main class when clicking start-->
+                    <g class="logo_svg_main">
+                        <path class="gradient_design" fill="#FFFFFF" d="M46.232,0v14.907c-0.006,3.459-2.869,6.308-6.339,6.313l-12.19,0.002V2.375h-4.562v18.848H10.948
+                              c-3.468-0.008-6.33-2.856-6.336-6.315V0H0.051L0.049,14.907c0.01,5.989,4.889,10.848,10.899,10.858h28.946 
+                              c6.011-0.011,10.891-4.869,10.899-10.858V0H46.232z"></path>
+                        <path class="gradient_design" fill="#FFFFFF" d="M173.167,4.543H200V0h-26.833c-4.826,0.008-8.739,3.907-8.747,8.709v8.345
+                              c0.008,4.805,3.921,8.7,8.747,8.711H200v-4.543h-26.833c-2.288-0.004-4.182-1.889-4.185-4.168v-1.901h27.098v-4.542h-27.098
+                              V8.709C168.985,6.435,170.878,4.549,173.167,4.543z"></path>
+                        <polygon class="gradient_design" fill="#FFFFFF" points="90.833,0 90.833,10.611 66.004,10.611 66.004,0 61.444,0 61.444,25.765 66.004,25.765
+                              66.004,15.153 90.833,15.153 90.833,25.765 95.395,25.765 95.395,0"></polygon>
+                        <polygon class="gradient_design" fill="#FFFFFF" points="156.123,0 122.173,0 122.173,4.543 136.871,4.543 136.871,25.765 141.43,25.765 141.43,4.543
+                              156.123,4.543"></polygon>
+                        <polygon class="gradient_design" fill="#FFFFFF" points="107.883,25.765 107.883,0 112.447,0 112.447,25.765 107.883,25.765"></polygon>
+                    </g>
+                </svg>
+                
+                <!--svg loading with gradient_design class will be added when clicking button start-->
+                <svg viewBox="45 30 100 100" >
+                    <g transform=" matrix(0.866, -0.5, 0.25, 0.433, 80, 80)">
+                        <path id="rotation" class="gradient_design" visibility='hidden' d="M 0,70 A 65,70 0 0,0 65,0 5,5 0 0,1 75,0 75,70 0 0,1 0,70Z" fill="#FFF">
+                            <animateTransform id ="beginRotate" attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s"  begin="indefinite"
+                                repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </svg>
+            </svg>
+
             </div>
         </header>
+        
         <div class="whi__docs__body">
             <div class="whi__docs__body__wrapper">
-               
+
                 <div class="whi__docs__demo">
                     <p>
                         This is your canvas for this challange. Details can be found in the readme.md or on github.
@@ -31,11 +95,42 @@
                 </div> 
 
                 <h3>Demo</h3>
+                <br/>
+               
+
                 <div class="whi__docs__demo">
-                   <button class="js-loader-start">start loader</button>
-                   <button class="js-loader-stop">stop loader</button>
-                   <!-- Something to control the loader?  -->
-                   <script></script>
+                    <button type="button" class="js-loader-start">start loader</button>
+                    <button type="button" class="js-loader-stop">stop loader</button>
+
+                    <!-- script to control the logo loader animation -->
+                    <script>
+                        var btn = $('.js-loader-start');
+                        var btn2 = $('.js-loader-stop');
+                        
+                        var tape = $('#beginRotate'), 
+                                gradnt = $('.gradient_design'),
+                                rot = $('#rotation'),
+                                stroke = $('.logo_svg_main');
+                        //  when clicking button start loader show animation loader
+                        if(btn){
+                            btn.on('click', function () {
+                                rot.css({visibility: 'visible'});
+                                gradnt.css({fill: "url(#MyGradient)"});
+                                stroke.css({strokeWidth: 1.5, strokeDasharray: "200"});
+                                tape[0].beginElement();
+                            });
+                        }
+                        //  when clicking button stop loader stop animation loader
+                        if(btn2){
+                            btn2.on('click', function () {
+                                gradnt.css({fill: "#FFFFFF"});
+                                rot.css({visibility: 'hidden'});
+                                stroke.css({strokeWidth: 0, strokeDasharray: 0});
+                                tape[0].endElement();
+                            });
+                        }
+
+                    </script>
                 </div>
 
                 <h3>Inspiration</h3>
@@ -44,7 +139,7 @@
                         <li><a href="http://codepen.io/aurer/pen/jEGbA">http://codepen.io/aurer/pen/jEGbA</a></li>
                         <li><a href="https://gitlab.com/gitlab-com/gitlab-artwork">Actual spinner / loader logo in action</a></li>
                     </ul>
-                </div> 
+                </div>
 
 
             </div> 

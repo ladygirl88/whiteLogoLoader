@@ -10,9 +10,9 @@ var gulp = require('gulp'),
  * More information about sass http://sass-lang.com/
  */
 gulp.task('sass', function () {
-  return gulp.src('./src/style.scss')
+  return gulp.src('./src/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./demo/css'));
+    .pipe(gulp.dest('./demo/css/'));
 });
 
 /**
@@ -51,7 +51,7 @@ gulp.task('open', function(){
  */
 gulp.task('watch', function () {
   gulp.watch(['./src/demo.html', './demo/**/*.css'], ['html']);
-  gulp.watch(['./style.scss'], ['sass']);
+  gulp.watch(['./*.scss'], ['sass']);
 });
 
 gulp.task('demo', ['sass','connect', 'watch', 'open']);

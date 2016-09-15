@@ -1,5 +1,30 @@
-/**
- * This is sass file for styles you can use css or sass.
- * More information about sass can be found on http://sass-lang.com/
- * The file will be processed by the running developement server when changes are made to it.
- */
+.svg_wrap{
+    .gradient_design {
+        fill: '0';
+    }
+    .logo_svg_main {
+        /*stroke-width: 1%;*/
+        stroke: white;
+
+        /*stroke-dasharray: 2.6 2.45;*/
+        /*stroke-dasharray: 286.01 286.01;*/
+        -webkit-animation: dash 10s linear infinite;
+        o-webkit-animation: dash 10s linear infinite;
+        moz-webkit-animation: dash 10s linear infinite;
+        animation: dash 10s linear infinite;
+
+    }
+
+    @-webkit-keyframes dash {
+        to { stroke-dashoffset: 100; }
+    }
+    @-moz-keyframes dash {
+        to { stroke-dashoffset: 100; }
+    }
+    @-o-keyframes dash {
+        to { stroke-dashoffset: 100; }
+    }
+    @keyframes dash {
+        to { stroke-dashoffset: 100; }
+    }
+}
